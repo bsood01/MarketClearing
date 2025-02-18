@@ -1,6 +1,6 @@
 import pandas as pd 
 import csv
-
+import os
 
 def get_market_dict(combi_df,schedule_df):
     dict={"Day":[],"Schedule":[],"Price":[],"Quantity":[]}
@@ -29,10 +29,12 @@ def get_market_dict(combi_df,schedule_df):
 
 def main():
     combi_df= pd.read_excel('MarketSchedule.xlsx', sheet_name='Combinations')
-    schedule_df = pd.read_excel('MarketSchedule.xlsx', header=[0, 1], sheet_name='Schedules')
-    res=get_market_dict(combi_df,schedule_df)
-    result_df = pd.DataFrame.from_dict(res,orient='index').transpose()
-    result_df.to_csv("result.csv", encoding='utf-8',index=False)
+    for i in combi_df.iterrows():
+        print(i[0])
+    #schedule_df = pd.read_excel('MarketSchedule.xlsx', header=[0, 1], sheet_name='Schedules')
+    #res=get_market_dict(combi_df,schedule_df)
+    #result_df = pd.DataFrame.from_dict(res,orient='index').transpose()
+    #result_df.to_csv("result.csv", encoding='utf-8',index=False)
 
 
 if __name__ == '__main__':
